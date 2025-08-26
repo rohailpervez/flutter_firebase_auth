@@ -1,16 +1,67 @@
-# flutter_firebase
+# flutter_firebase_auth_app
 
-A new Flutter project.
+A Flutter project integrated with Firebase Authentication that allows users to:
 
-## Getting Started
+- Sign up using Email & Password  
+- Log in with existing credentials  
+- Navigate to a protected Home Screen after successful login  
+- Log out and return to login screen  
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- User Registration (Email & Password)  
+- User Login  
+- Firebase Authentication Integration  
+- Home Screen with user details  
+- Logout functionality  
+- Clean & Modern UI  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technologies Used
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter (Dart)  
+- Firebase Authentication  
+- Material Design  
+
+## 📸 Screenshots
+
+![Login Screen](screenshots/login.png)  
+![Signup Screen](screenshots/signup.png)  
+![Home Screen](screenshots/home.png)  
+
+## Setup Instructions
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/rohailpervez/flutter_firebase_auth_app.git
+Navigate to project folder:
+
+bash
+Copy
+Edit
+cd flutter_firebase_auth_app
+Get dependencies:
+
+bash
+Copy
+Edit
+flutter pub get
+Setup Firebase:
+
+Create a Firebase project
+
+Enable Email/Password Authentication
+
+Download google-services.json and place it inside android/app/
+
+For web: update firebase_options.dart using FlutterFire CLI
+
+Run the project:
+
+bash
+Copy
+Edit
+flutter run
+This project is created as part of my learning journey in Flutter and Firebase integration.
+
+This project is licensed under the MIT License - see the LICENSE file for details.
