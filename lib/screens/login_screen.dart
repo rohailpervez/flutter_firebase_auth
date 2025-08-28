@@ -6,8 +6,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_firebase/firebase_options.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -37,22 +35,32 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() async {
-    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Please enter email and password")),
       );
       return;
     }
 
-    setState(() {
-      loading = true;
-    });
+    setState(() => loading = true);
 
     try {
-      await _auth.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
+
+      // Check if email is verified
+      if (!userCredential.user!.emailVerified) {
+        await _auth.signOut();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Please verify your email before login.")),
+        );
+        return;
+      }
 
       if (!mounted) return;
       Navigator.pushReplacement(
@@ -68,9 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
         SnackBar(content: Text("Error: $e")),
       );
     } finally {
-      setState(() {
-        loading = false;
-      });
+      setState(() => loading = false);
     }
   }
 
@@ -84,12 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple.shade50, // soft background
+      backgroundColor: Colors.deepPurple.shade50,
       appBar: AppBar(
         title: Text('Login'),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
-        elevation: 0,
       ),
       body: Center(
         child: SingleChildScrollView(
