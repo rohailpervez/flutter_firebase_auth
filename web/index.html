@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="$FLUTTER_BASE_HREF">
 
   <meta charset="UTF-8">
@@ -31,8 +18,34 @@
 
   <title>flutter_firebase</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- ✅ Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <!-- (Optional) Analytics -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js"></script> -->
+
+  <script>
+    // ✅ Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDD9bNTHn3n4bj-io35qqCHMptR1SA5wDs",
+      authDomain: "flutterfirebaseapp-2aa15.firebaseapp.com",
+      projectId: "flutterfirebaseapp-2aa15",
+      storageBucket: "flutterfirebaseapp-2aa15.appspot.com", // ✅ check this in console
+      messagingSenderId: "816695239528",
+      appId: "1:816695239528:web:9e9692222c7cfe99c2acdd",
+      measurementId: "G-YH094R3CFQ"
+    };
+
+    // ✅ Firebase initialize
+    firebase.initializeApp(firebaseConfig);
+    // firebase.analytics(); // (Optional)
+  </script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<!-- 👇 Recaptcha container (required for web phone auth) -->
+<div id="recaptcha-container"></div>
+
+<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
